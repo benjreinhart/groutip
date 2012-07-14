@@ -42,21 +42,21 @@
       var _this = this;
       this.$el = opts.el;
       this.options = $.extend(this.defaults(), opts);
-      this._constructToolTip();
+      this.$tooltip = this._constructTooltip(this.options);
       $(window).resize(function() {
-        return _this._position();
+        return _this.position();
       });
       this.render();
     }
 
     Groutip.prototype.render = function() {
       var _base;
-      this.$toolTip.css({
+      this.$tooltip.css({
         opacity: 0
-      }).appendTo('body');
-      this._storeDimensions();
-      this._position();
-      this.$toolTip.css({
+      }).appendTo('#main-content');
+      this.dimensions = this._getDimensions(this.$tooltip);
+      this.position();
+      this.$tooltip.css({
         opacity: 1
       });
       return typeof (_base = this.options).onRender === "function" ? _base.onRender() : void 0;
@@ -67,23 +67,10 @@
       if (typeof (_base = this.options).onRemove === "function") {
         _base.onRemove();
       }
-      return this.$toolTip.remove();
+      return this.$tooltip.remove();
     };
 
-    Groutip.prototype._constructToolTip = function() {
-      var _ref;
-      this.$toolTip = $((_ref = this.options.template) != null ? _ref : this.template);
-      return this.$toolTip.attr('class', this._getClasses());
-    };
-
-    Groutip.prototype._getClasses = function() {
-      if (this.options["class"] == null) {
-        return this.options.klass;
-      }
-      return "" + this.options.klass + " " + this.options["class"];
-    };
-
-    Groutip.prototype._position = function() {
+    Groutip.prototype.position = function() {
       var oL, oT, offset, opts, position, _ref, _ref1, _ref2;
       position = (_ref = this.options.position) != null ? _ref : 'topCenter';
       opts = POSITION_MAPPING[position];
@@ -91,11 +78,11 @@
       oL = +((_ref2 = this.options.offsetLeft) != null ? _ref2 : 0);
       switch (position) {
         case 'topCenter':
-          offset = "" + oL + " -" + (oT + this.height);
+          offset = "" + oL + " -" + (oT + this.dimensions.outerHeight);
           break;
         case 'bottomCenter':
         case 'bottomLeft':
-          offset = "" + oL + " " + (oT + this.height);
+          offset = "" + oL + " " + (oT + this.dimensions.outerHeight);
           break;
         case 'leftCenter':
           offset = "-" + oL + " " + oT;
@@ -107,12 +94,35 @@
         of: this.$el,
         offset: offset
       });
-      return this.$toolTip.position(opts);
+      this.$tooltip.position(opts);
+      this.$tooltip.css({
+        width: this.dimensions.width,
+        height: this.dimensions.height
+      });
+      return $(this.$tooltip.children()[0]).css({
+        position: 'absolute'
+      });
     };
 
-    Groutip.prototype._storeDimensions = function() {
-      this.width = this.$toolTip.outerWidth();
-      return this.height = this.$toolTip.outerHeight();
+    Groutip.prototype._constructTooltip = function(options, template) {
+      var _ref;
+      return $((_ref = options.template) != null ? _ref : template).attr('class', this._getClasses(options)).css(options.css);
+    };
+
+    Groutip.prototype._getClasses = function(options) {
+      if (options["class"] == null) {
+        return options.klass;
+      }
+      return "" + options.klass + " " + options["class"];
+    };
+
+    Groutip.prototype._getDimensions = function($tooltip) {
+      return {
+        width: $tooltip.width(),
+        height: $tooltip.height(),
+        outerWidth: $tooltip.outerWidth(),
+        outerHeight: $tooltip.outerHeight()
+      };
     };
 
     return Groutip;

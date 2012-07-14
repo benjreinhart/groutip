@@ -30,35 +30,30 @@ class Groutip
     @$el = opts.el
     @options = $.extend(this.defaults(), opts)
 
-    this._constructToolTip()
+    @$tooltip = this._constructTooltip(@options)
 
     $(window).resize =>
-      this._position()
+      this.position()
 
     this.render()
 
   render: ->
-    @$toolTip.css({ opacity: 0 }).appendTo 'body'
+    # place invisible tooltip on page so we can read the
+    # tooltip's width and height dimensions
+    @$tooltip.css({ opacity: 0 }).appendTo('#main-content')
 
-    this._storeDimensions()
-    this._position()
+    # store those dimensions
+    @dimensions = this._getDimensions(@$tooltip)
+    this.position()
 
-    @$toolTip.css opacity: 1
+    @$tooltip.css opacity: 1
     @options.onRender?()
 
   remove: ->
     @options.onRemove?()
-    @$toolTip.remove()
+    @$tooltip.remove()
 
-  _constructToolTip: ->
-    @$toolTip = $(@options.template ? @template)
-    @$toolTip.attr('class', this._getClasses())
-
-  _getClasses: ->
-    return @options.klass unless @options.class?
-    "#{ @options.klass } #{ @options.class }"
-
-  _position: ->
+  position: ->
     position = @options.position ? 'topCenter'
     opts = POSITION_MAPPING[position]
 
@@ -68,9 +63,9 @@ class Groutip
 
     switch position
       when 'topCenter'
-        offset = "#{ oL } -#{ oT + @height}"
+        offset = "#{ oL } -#{ oT + @dimensions.outerHeight}"
       when 'bottomCenter', 'bottomLeft'
-        offset = "#{ oL } #{ oT + @height }"
+        offset = "#{ oL } #{ oT + @dimensions.outerHeight }"
       when 'leftCenter'
         offset = "-#{ oL } #{ oT }"
       else
@@ -80,11 +75,31 @@ class Groutip
       of: @$el
       offset: offset
 
-    @$toolTip.position(opts)
+    @$tooltip.position(opts)
 
-  _storeDimensions: ->
-    @width  = @$toolTip.outerWidth()
-    @height = @$toolTip.outerHeight()
+    @$tooltip.css
+      width: @dimensions.width
+      height: @dimensions.height
+
+    # set the child to absolute so it doesn't change shape
+    # on window resize
+    $(@$tooltip.children()[0]).css position: 'absolute'
+
+
+  _constructTooltip: (options, template) ->
+    $(options.template ? template)
+      .attr('class', this._getClasses(options))
+      .css(options.css)
+
+  _getClasses: (options) ->
+    return options.klass unless options.class?
+    "#{ options.klass } #{ options.class }"
+
+  _getDimensions: ($tooltip) ->
+    width: $tooltip.width()
+    height: $tooltip.height()
+    outerWidth: $tooltip.outerWidth()
+    outerHeight: $tooltip.outerHeight()
 
 
 jQuery.fn.groutip = (options) ->
