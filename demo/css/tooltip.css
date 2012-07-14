@@ -1,0 +1,91 @@
+.groutip {
+  position: absolute;
+}
+
+.tip {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  background-clip: padding-box;
+  background-color: #333333;
+  border-color: black;
+  color: white;
+  font-size: 12px;
+  max-width: 300px;
+  padding: 10px;
+}
+
+.tip .tip-arrow {
+  background-image: url("");
+  overflow: visible !important;
+  width: 100%;
+}
+
+.tip .tip-arrow:before {
+  bottom: -5px;
+  content: "";
+  overflow: visible;
+  position: absolute;
+}
+
+.tip .tip-inner {
+  padding: 10px;
+}
+
+
+.tip-arrow-bottom {
+  bottom: 0;
+}
+
+.tip-arrow-bottom:before {
+  left: 50%;
+  margin-left: -5px;
+  border-bottom: none;
+  border-top: 5px solid #333333;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+}
+
+
+.tip-arrow-top {
+  top: 0;
+  margin-top: -5px;
+}
+
+.tip-arrow-top:before {
+  left: 50%;
+  margin-left: -5px;
+  border-top: none;
+  border-bottom: 5px solid #333333;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+}
+
+
+.tip-arrow-right {
+  left: 100%;
+  top: 50%;
+}
+
+.tip-arrow-right:before {
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 5px solid #333333;
+  border-right: none;
+}
+
+
+.tip-arrow-left {
+  left: -5px;
+  top: 50%;
+}
+
+.tip-arrow-left:before {
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: none;
+  border-right: 5px solid #333333;
+}

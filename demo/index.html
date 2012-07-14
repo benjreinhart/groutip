@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" >
+  <meta charset="utf-8">
+
+  <title>ToolTip Spike</title>
+
+  <!-- CSS INCLUDES -->
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/tooltip.css">
+
+</head>
+<body>
+
+  <div id="container">
+    <header>
+      <h1>ToolTip Spike</h1>
+    </header>
+
+    <section id="sub-content">
+      <ul>
+        <li>
+          <a href="#">Nav Item 1</a>
+        </li>
+        <li>
+          <a href="#">Nav Item 2</a>
+        </li>
+      </ul>
+    </section>
+
+
+    <!-- 10-for-cheese-or-chocolate-fondue-for-two-up-to-22-value-at-simply-fondue -->
+
+
+    <section id="main-content">
+      <h2>ToolTip Stuff</h2>
+
+      <div>
+        <h4>10-for-chocolate-fondue-for-two-at-simply-fondue</h4>
+        <input type="button" value="FAVE" id="fave-btn">
+      </div>
+    </section>
+  </div>
+
+  <!-- JAVASCRIPT INCLUDES -->
+  <script type="text/javascript" src="lib/vendor/jquery.js"></script>
+  <script type="text/javascript" src="lib/vendor/jquery-ui-1.8.21.min.js"></script>
+  <script type="text/javascript" src="lib/groutip.js"></script>
+
+
+  <script type="text/javascript">
+    $(function(){
+      $('#fave-btn').click(function(){
+        $(this).groutip({ 
+          class: 'tip',
+          position: 'rightCenter',
+          offsetLeft: '10'
+        });
+      });
+    });
+  </script>
+</body>
+</html>
