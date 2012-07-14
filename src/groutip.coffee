@@ -30,7 +30,7 @@ class Groutip
     @$el = opts.el
     @options = $.extend(this.defaults(), opts)
 
-    @$tooltip = this._constructTooltip(@options)
+    @$tooltip = this._constructTooltip(@options, @template)
 
     $(window).resize =>
       this.position()
@@ -89,7 +89,7 @@ class Groutip
   _constructTooltip: (options, template) ->
     $(options.template ? template)
       .attr('class', this._getClasses(options))
-      .css(options.css)
+      .css(options.css ? {})
 
   _getClasses: (options) ->
     return options.klass unless options.class?
@@ -103,5 +103,5 @@ class Groutip
 
 
 jQuery.fn.groutip = (options) ->
-  options.el = if options.el then $(options.el) else this
+  options.el = this
   new Groutip(options)

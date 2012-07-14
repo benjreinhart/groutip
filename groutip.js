@@ -42,7 +42,7 @@
       var _this = this;
       this.$el = opts.el;
       this.options = $.extend(this.defaults(), opts);
-      this.$tooltip = this._constructTooltip(this.options);
+      this.$tooltip = this._constructTooltip(this.options, this.template);
       $(window).resize(function() {
         return _this.position();
       });
@@ -105,8 +105,8 @@
     };
 
     Groutip.prototype._constructTooltip = function(options, template) {
-      var _ref;
-      return $((_ref = options.template) != null ? _ref : template).attr('class', this._getClasses(options)).css(options.css);
+      var _ref, _ref1;
+      return $((_ref1 = options.template) != null ? _ref1 : template).attr('class', this._getClasses(options)).css((_ref = options.css) != null ? _ref : {});
     };
 
     Groutip.prototype._getClasses = function(options) {
@@ -130,7 +130,7 @@
   })();
 
   jQuery.fn.groutip = function(options) {
-    options.el = options.el ? $(options.el) : this;
+    options.el = this;
     return new Groutip(options);
   };
 
