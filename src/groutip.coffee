@@ -40,7 +40,7 @@ class Groutip
   render: ->
     # place invisible tooltip on page so we can read the
     # tooltip's width and height dimensions
-    @$tooltip.css({ opacity: 0 }).appendTo('#main-content')
+    @$tooltip.css({ opacity: 0 }).appendTo('body')
 
     # store those dimensions
     @dimensions = this._getDimensions(@$tooltip)
@@ -103,5 +103,5 @@ class Groutip
 
 
 jQuery.fn.groutip = (options) ->
-  options.el = this
+  options.el = if options.el then $(options.el) else this
   new Groutip(options)

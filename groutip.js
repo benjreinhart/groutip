@@ -53,7 +53,7 @@
       var _base;
       this.$tooltip.css({
         opacity: 0
-      }).appendTo('#main-content');
+      }).appendTo('body');
       this.dimensions = this._getDimensions(this.$tooltip);
       this.position();
       this.$tooltip.css({
@@ -130,7 +130,7 @@
   })();
 
   jQuery.fn.groutip = function(options) {
-    options.el = this;
+    options.el = options.el ? $(options.el) : this;
     return new Groutip(options);
   };
 
