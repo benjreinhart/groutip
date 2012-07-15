@@ -22,6 +22,7 @@ Weird interactions when window resizing when the alignment is anything but `topC
 * clone repo
 * run `cake createSymlink` to symlink the demo app groutip.js to where the coffeescript output is (in ./groutip.js)
 * run `cake watch` to watch the coffeescript file and output to ./
+* `open demo/index.html`
 
 
 ## options
