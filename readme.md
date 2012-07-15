@@ -4,6 +4,11 @@ jQuery tooltip.
 
 Requires jQuery UI (specifically [position](http://jqueryui.com/demos/position/)) as of right now, :(
 
+
+### known issues:
+weird interactions when window resizing when the alignment is anything but `topCenter` or `bottomCenter` - otherwise works great.
+
+
 ## options
 
 
