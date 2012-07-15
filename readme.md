@@ -13,7 +13,7 @@ Weird interactions when window resizing when the alignment is anything but `topC
 
 * Fix css edge cases when window is resized.
 * Don't rely on jQuery UI
-* test in different browsers for cross browser compatibility
+* Test in different browsers for cross browser compatibility
 * Add tests
 
 
@@ -41,7 +41,8 @@ Weird interactions when window resizing when the alignment is anything but `topC
 * `css` - same options as jQuery `.css()` takes
 * `removeHandler` - function to setup the event handler which will specify when/how to remove the object from the DOM
   * will be passed the instance of the Groutip class so you can call `remove()` on it
-* `onRender` - function which will be called right before tooltip is displayed
+* `render` - function which will be called as the function to display the tooltip
+  * will be passed the tooltip jQuery object
 * `remove` - function which will be called as the function to remove the tool tip from the DOM
   * will be passed the tooltip jQuery object
 
@@ -114,8 +115,8 @@ $('#fave-btn').groutip({
   position: 'rightCenter',
   offsetLeft: 10,
   template: '<div><span>This is placeholder text, please add your own!</span></div>',
-  onRender: function() {
-    alert('rendering tooltip!');
+  render: function($tooltip) {
+    $tooltip.fadeTo('slow', 1)
   }
 });
 ```

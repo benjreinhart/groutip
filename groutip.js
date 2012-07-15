@@ -63,24 +63,26 @@
     }
 
     Groutip.prototype.render = function() {
-      var _base;
+      var render;
       this.$tooltip.css({
         opacity: 0
       }).appendTo('body');
       this.dimensions = this._getDimensions(this.$tooltip);
       this.position();
-      if (typeof (_base = this.options).onRender === "function") {
-        _base.onRender();
+      if ((render = this.options.render) != null) {
+        return render(this.$tooltip);
+      } else {
+        return this.$tooltip.css({
+          opacity: 1
+        });
       }
-      return this.$tooltip.css({
-        opacity: 1
-      });
     };
 
     Groutip.prototype.remove = function() {
+      var remove;
       $(window).unbind('resize', this.windowResizeHandler);
-      if (this.options.remove != null) {
-        return this.options.remove(this.$tooltip);
+      if ((remove = this.options.remove) != null) {
+        return remove(this.$tooltip);
       } else {
         return this.$tooltip.remove();
       }

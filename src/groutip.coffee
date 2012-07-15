@@ -57,14 +57,16 @@ class Groutip
 
     this.position()
 
-    @options.onRender?()
-    @$tooltip.css opacity: 1
+    if (render = @options.render)?
+      render(@$tooltip)
+    else
+      @$tooltip.css opacity: 1
 
   remove: ->
     $(window).unbind('resize', @windowResizeHandler)
 
-    if @options.remove?
-      @options.remove(@$tooltip)
+    if (remove = @options.remove)?
+      remove(@$tooltip)
     else
       @$tooltip.remove()
 

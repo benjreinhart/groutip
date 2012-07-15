@@ -120,8 +120,8 @@
           position: 'rightCenter',
           offsetLeft: 10,
           template: '<div><span>This is placeholder text, please add your own!</span></div>',
-          onRender: function() {
-            alert('rendering tooltip!');
+          render: function($tooltip) {
+            $tooltip.fadeTo('slow', 1)
           }
         });
       });
