@@ -30,72 +30,68 @@ Requires jQuery UI (specifically [position](http://jqueryui.com/demos/position/)
 These are taken from the demo
 
 ```javascript
-  $('#top-center').click(function(){
-    $('#fave-btn').groutip({
-      class: 'tip',
-      position: 'topCenter',
-      offsetTop: 10,
-      template: '<div><p>This is placeholder text, please add your own!</p></div>'
-    });
-  });
+// basic
+$('#fave-btn').groutip({
+  class: 'tip',
+  position: 'topCenter',
+  offsetTop: 10,
+  template: '<div><p>This is placeholder text, please add your own!</p></div>'
+});
 ```
 
 ```javascript
-  $('#bottom-center').click(function(){
-    $('#fave-btn').groutip({
-      class: 'tip',
-      position: 'bottomCenter',
-      offsetTop: 10,
-      template: '<div><span>This is placeholder text, please add your own!</span></div>',
-      removeHandler: function(groutip) {
-        $('#fave-btn').click(function(){
-          groutip.remove()
-        });
-      }
+// setup your own remove handler - it will be yielded the groutip instance
+$('#fave-btn').groutip({
+  class: 'tip',
+  position: 'bottomCenter',
+  offsetTop: 10,
+  template: '<div><span>This is placeholder text, please add your own!</span></div>',
+  removeHandler: function(groutip) {
+    $('#fave-btn').click(function(){
+      groutip.remove()
     });
-  });
+  }
+});
 ```
 
 ```javascript
-  $('#bottom-left').click(function(){
-    $('#fave-btn').groutip({
-      class: 'tip',
-      position: 'bottomLeft',
-      offsetTop: 10,
-      template: '<div><span>This is placeholder text, please add your own!</span></div>',
-      remove: function($tooltip) {
-        $tooltip.fadeOut('slow', function(){
-          $tooltip.remove()
-        });
-      }
+// if you pass a `remove` option, the Groutip class will not remove
+// the tooltip object, but instead call the `remove` option you
+// provided and yield the jQuery tooltip object
+$('#fave-btn').groutip({
+  class: 'tip',
+  position: 'bottomLeft',
+  offsetTop: 10,
+  template: '<div><span>This is placeholder text, please add your own!</span></div>',
+  remove: function($tooltip) {
+    $tooltip.fadeOut('slow', function(){
+      $tooltip.remove()
     });
-  });
+  }
+});
 ```
 
 ```javascript
-  $('#left-center').click(function(){
-    $('#fave-btn').groutip({
-      class: 'tip',
-      position: 'leftCenter',
-      offsetLeft: 10,
-      template: '<div><span>This is placeholder text, please add your own!</span></div>',
-      css: {
-        backgroundColor: 'red'
-      }
-    });
-  });
+$('#fave-btn').groutip({
+  class: 'tip',
+  position: 'leftCenter',
+  offsetLeft: 10,
+  template: '<div><span>This is placeholder text, please add your own!</span></div>',
+  css: {
+    backgroundColor: 'red'
+  }
+});
 ```
 
 ```javascript
-  $('#right-center').click(function(){
-    $('#fave-btn').groutip({
-      class: 'tip',
-      position: 'rightCenter',
-      offsetLeft: 10,
-      template: '<div><span>This is placeholder text, please add your own!</span></div>',
-      onRender: function() {
-        alert('rendering tooltip!');
-      }
-    });
-  });
+// do something right as the tooltip jquery object is displaying
+$('#fave-btn').groutip({
+  class: 'tip',
+  position: 'rightCenter',
+  offsetLeft: 10,
+  template: '<div><span>This is placeholder text, please add your own!</span></div>',
+  onRender: function() {
+    alert('rendering tooltip!');
+  }
+});
 ```
