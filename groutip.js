@@ -3,7 +3,8 @@
   var Groutip;
 
   Groutip = (function() {
-    var POSITION_MAPPING;
+    var POSITION_MAPPING, wait,
+      _this = this;
 
     Groutip.name = 'Groutip';
 
@@ -43,9 +44,11 @@
       this.$el = opts.el;
       this.options = $.extend(this.defaults(), opts);
       this.$tooltip = this._constructTooltip(this.options, this.template);
-      $(window).resize(function() {
+      this.windowResizeHandler = function() {
         return _this.position();
-      });
+      };
+      $(window).bind('resize', this.windowResizeHandler);
+      this._setupRemoveHandler(this.$tooltip, this.$el, this.options);
       this.render();
     }
 
@@ -64,10 +67,15 @@
 
     Groutip.prototype.remove = function() {
       var _base;
+      $(window).unbind('resize', this.windowResizeHandler);
       if (typeof (_base = this.options).onRemove === "function") {
         _base.onRemove();
       }
-      return this.$tooltip.remove();
+      if (this.options.remove != null) {
+        return this.options.remove(this.$tooltip);
+      } else {
+        return this.$tooltip.remove();
+      }
     };
 
     Groutip.prototype.position = function() {
@@ -125,9 +133,27 @@
       };
     };
 
+    Groutip.prototype._setupRemoveHandler = function($tooltip, $el, options) {
+      var removeHandler,
+        _this = this;
+      if ((removeHandler = options.removeHandler) != null) {
+        return removeHandler(this);
+      } else {
+        return wait(1000, function() {
+          return $(document).one('click', function() {
+            return _this.remove();
+          });
+        });
+      }
+    };
+
+    wait = function(delay, callback) {
+      return setTimeout(callback, delay);
+    };
+
     return Groutip;
 
-  })();
+  }).call(this);
 
   jQuery.fn.groutip = function(options) {
     options.el = this;

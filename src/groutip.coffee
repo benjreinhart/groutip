@@ -32,9 +32,12 @@ class Groutip
 
     @$tooltip = this._constructTooltip(@options, @template)
 
-    $(window).resize =>
-      this.position()
+    # save a reference to this handler so we can unbind it
+    # from window on remove
+    @windowResizeHandler = => this.position()
+    $(window).bind 'resize', @windowResizeHandler
 
+    this._setupRemoveHandler(@$tooltip, @$el, @options)
     this.render()
 
   render: ->
@@ -42,7 +45,7 @@ class Groutip
     # tooltip's width and height dimensions
     @$tooltip.css({ opacity: 0 }).appendTo('body')
 
-    # store those dimensions
+    # store width and height dimensions
     @dimensions = this._getDimensions(@$tooltip)
     this.position()
 
@@ -50,8 +53,13 @@ class Groutip
     @options.onRender?()
 
   remove: ->
+    $(window).unbind('resize', @windowResizeHandler)
     @options.onRemove?()
-    @$tooltip.remove()
+
+    if @options.remove?
+      @options.remove(@$tooltip)
+    else
+      @$tooltip.remove()
 
   position: ->
     position = @options.position ? 'topCenter'
@@ -101,6 +109,16 @@ class Groutip
     outerWidth: $tooltip.outerWidth()
     outerHeight: $tooltip.outerHeight()
 
+  _setupRemoveHandler: ($tooltip, $el, options) ->
+    if (removeHandler = options.removeHandler)?
+      removeHandler(this)
+    else
+      wait 1000, =>
+        $(document).one 'click', =>
+          this.remove()
+
+
+  wait = (delay, callback) => setTimeout(callback, delay)
 
 jQuery.fn.groutip = (options) ->
   options.el = this
