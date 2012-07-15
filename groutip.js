@@ -58,7 +58,7 @@
         return _this.position();
       };
       $(window).bind('resize', this.windowResizeHandler);
-      this._setupRemoveHandler(this.$tooltip, this.$el, this.options);
+      this._setupRemoveHandler(this.options);
       this.render();
     }
 
@@ -134,7 +134,7 @@
       };
     };
 
-    Groutip.prototype._setupRemoveHandler = function($tooltip, $el, options) {
+    Groutip.prototype._setupRemoveHandler = function(options) {
       var removeHandler,
         _this = this;
       if ((removeHandler = options.removeHandler) != null) {

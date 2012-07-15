@@ -44,7 +44,7 @@ class Groutip
     @windowResizeHandler = => this.position()
     $(window).bind 'resize', @windowResizeHandler
 
-    this._setupRemoveHandler(@$tooltip, @$el, @options)
+    this._setupRemoveHandler(@options)
     this.render()
 
   render: ->
@@ -112,7 +112,7 @@ class Groutip
     outerWidth: $tooltip.outerWidth()
     outerHeight: $tooltip.outerHeight()
 
-  _setupRemoveHandler: ($tooltip, $el, options) ->
+  _setupRemoveHandler: (options) ->
     if (removeHandler = options.removeHandler)?
       removeHandler(this)
     else
