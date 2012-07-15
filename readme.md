@@ -55,7 +55,7 @@ If you do not supply a `removeHandler`, then after 1000ms if you click anywhere 
 These are taken from the demo
 
 ```javascript
-// basic
+// Basic
 $('#fave-btn').groutip({
   class: 'tip',
   position: 'topCenter',
@@ -67,7 +67,9 @@ $('#fave-btn').groutip({
 ```javascript
 // Setup your own remove handler - it will be yielded the groutip instance.
 // The only method of interest on the groutip instance is `remove`, which unbinds
-// events and then either removes it from the DOM or calls the `remove` option if provided
+// events and then calls the `remove` option (if provided) or just calls jQuery.remove()
+// on the tooltip object.
+
 $('#fave-btn').groutip({
   class: 'tip',
   position: 'bottomCenter',
@@ -82,9 +84,9 @@ $('#fave-btn').groutip({
 ```
 
 ```javascript
-// if you pass a `remove` option, the Groutip class will not remove
+// If you pass a `remove` option, the Groutip class will not remove
 // the tooltip object, but instead call the `remove` option you
-// provided and yield the jQuery tooltip object at which point it's
+// provided and yield the jQuery tooltip object, at which point it's
 // your responsibility to remove it from the DOM
 
 $('#fave-btn').groutip({
