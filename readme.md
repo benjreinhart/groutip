@@ -13,6 +13,7 @@ Weird interactions when window resizing when the alignment is anything but `topC
 
 * Fix css edge cases when window is resized.
 * Don't rely on jQuery UI
+* test in different browsers for cross browser compatibility
 * Add tests
 
 
