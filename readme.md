@@ -30,8 +30,8 @@ Weird interactions when window resizing when the alignment is anything but `topC
 
 * `offsetTop` - vertical pixels from `element`
 * `offsetLeft` - horizontal pixels from `element`
-* `class` - classes you want to assign to the tooltip
-* `template` - the markup and content that'll make up the tooltip (redundant considering you pass in the template)
+* `class` - classes you want to assign to the tooltip (redundant considering you pass in the template)
+* `template` - the markup and content that'll make up the tooltip
 * `position` - the position you want the tooltip to be aligned
   * `topCenter`
   * `bottomCenter`
