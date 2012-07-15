@@ -642,6 +642,14 @@ a#edit-link {
   display: inline;
 }
 
+#main-content div {
+  margin-bottom: 20px;
+}
+
+#main-content div a {
+  display: block;
+  padding: 5px 0;
+}
 
 
 

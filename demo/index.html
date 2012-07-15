@@ -21,10 +21,22 @@
     <section id="sub-content">
       <ul>
         <li>
-          <a href="#">Nav Item 1</a>
+          <a href='#' id="top-center">topCenter</a>
         </li>
         <li>
-          <a href="#">Nav Item 2</a>
+          <a href='#' id="bottom-center">bottomCenter</a>
+        </li>
+
+        <li>
+          <a href='#' id="bottom-left">bottomLeft</a>
+        </li>
+
+        <li>
+          <a href='#' id="left-center">leftCenter</a>
+        </li>
+
+        <li>
+          <a href='#' id="right-center">rightCenter</a>
         </li>
       </ul>
     </section>
@@ -40,6 +52,7 @@
         <h4>10-for-chocolate-fondue-for-two-at-simply-fondue</h4>
         <input type="button" value="FAVE" id="fave-btn">
       </div>
+
     </section>
   </div>
 
@@ -51,14 +64,68 @@
 
   <script type="text/javascript">
     $(function(){
-      $('#fave-btn').click(function(){
-        $(this).groutip({ 
+      $('#top-center').click(function(){
+        $('#fave-btn').groutip({
+          class: 'tip',
+          position: 'topCenter',
+          offsetTop: 10,
+          template: '<div><span>This is placeholder text, please add your own!</span></div>'
+        });
+      });
+
+      $('#bottom-center').click(function(){
+        $('#fave-btn').groutip({
+          class: 'tip',
+          position: 'bottomCenter',
+          offsetTop: 10,
+          template: '<div><span>This is placeholder text, please add your own!</span></div>',
+          removeHandler: function(groutip) {
+            $('#fave-btn').click(function(){
+              groutip.remove()
+            });
+          },
+
+          remove: function($tooltip) {
+            $tooltip.fadeOut('slow', function(){
+              $tooltip.remove()
+            });
+          }
+        });
+      });
+
+      $('#bottom-left').click(function(){
+        $('#fave-btn').groutip({
+          class: 'tip',
+          position: 'bottomLeft',
+          offsetTop: 10,
+          template: '<div><span>This is placeholder text, please add your own!</span></div>',
+          onRemove: function() {
+            alert('removing tooltip!');
+          }
+        });
+      });
+
+
+      $('#left-center').click(function(){
+        $('#fave-btn').groutip({
+          class: 'tip',
+          position: 'leftCenter',
+          offsetLeft: 10,
+          template: '<div><span>This is placeholder text, please add your own!</span></div>',
+          css: {
+            backgroundColor: 'red'
+          }
+        });
+      });
+
+      $('#right-center').click(function(){
+        $('#fave-btn').groutip({
           class: 'tip',
           position: 'rightCenter',
           offsetLeft: 10,
-          template: '<div><span>OMG OMG OMG</span></div>',
-          css: {
-            backgroundColor: 'red'
+          template: '<div><span>This is placeholder text, please add your own!</span></div>',
+          onRender: function() {
+            alert('rendering tooltip!');
           }
         });
       });
