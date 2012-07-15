@@ -62,7 +62,6 @@ class Groutip
 
   remove: ->
     $(window).unbind('resize', @windowResizeHandler)
-    @options.onRemove?()
 
     if @options.remove?
       @options.remove(@$tooltip)

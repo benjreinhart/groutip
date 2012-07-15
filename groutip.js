@@ -78,11 +78,7 @@
     };
 
     Groutip.prototype.remove = function() {
-      var _base;
       $(window).unbind('resize', this.windowResizeHandler);
-      if (typeof (_base = this.options).onRemove === "function") {
-        _base.onRemove();
-      }
       if (this.options.remove != null) {
         return this.options.remove(this.$tooltip);
       } else {
