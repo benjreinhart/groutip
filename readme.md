@@ -1,6 +1,6 @@
 # Groutip
 
-jQuery tooltip.
+jQuery tooltip aimed at being as flexible and simple as possible.
 
 Requires jQuery UI (specifically [position](http://jqueryui.com/demos/position/)) as of right now, :(
 
