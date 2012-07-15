@@ -74,7 +74,7 @@ class Groutip
     position = @options.position
     opts = POSITION_MAPPING[position]
 
-    # allow either strings or ints for offset opts
+    # convert possible string representations to ints
     oT = +@options.offsetTop
     oL = +@options.offsetLeft
 
