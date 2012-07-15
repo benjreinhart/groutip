@@ -109,7 +109,12 @@ $('#fave-btn').groutip({
 ```
 
 ```javascript
-// do something right as the tooltip jquery object is displaying
+// pass a render option which will be used to display the tooltip
+
+// The already created, inserted and positioned tooltip will be passed to the function,
+// although the tooltip will have opacity of 0. A good use case for this is so
+// you can easily use custom animations/effects to display the tooltip.
+
 $('#fave-btn').groutip({
   class: 'tip',
   position: 'rightCenter',
