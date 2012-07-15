@@ -23,11 +23,18 @@ class Groutip
     </div>
   "
 
+  defaultCSS: ->
+    position: 'absolute'
+    zIndex: 10000
+
   defaults: ->
-    klass: 'groutip'
+    position: 'topCenter'
+    offsetTop: 0
+    offsetLeft: 0
 
   constructor: (opts) ->
     @$el = opts.el
+    opts.css = $.extend(this.defaultCSS(), opts.css)
     @options = $.extend(this.defaults(), opts)
 
     @$tooltip = this._constructTooltip(@options, @template)
@@ -47,10 +54,11 @@ class Groutip
 
     # store width and height dimensions
     @dimensions = this._getDimensions(@$tooltip)
+
     this.position()
 
-    @$tooltip.css opacity: 1
     @options.onRender?()
+    @$tooltip.css opacity: 1
 
   remove: ->
     $(window).unbind('resize', @windowResizeHandler)
@@ -62,12 +70,12 @@ class Groutip
       @$tooltip.remove()
 
   position: ->
-    position = @options.position ? 'topCenter'
+    position = @options.position
     opts = POSITION_MAPPING[position]
 
     # allow either strings or ints for offset opts
-    oT = +(@options.offsetTop  ? 0)
-    oL = +(@options.offsetLeft ? 0)
+    oT = +@options.offsetTop
+    oL = +@options.offsetLeft
 
     switch position
       when 'topCenter'
@@ -96,12 +104,8 @@ class Groutip
 
   _constructTooltip: (options, template) ->
     $(options.template ? template)
-      .attr('class', this._getClasses(options))
+      .attr('class', options.class)
       .css(options.css ? {})
-
-  _getClasses: (options) ->
-    return options.klass unless options.class?
-    "#{ options.klass } #{ options.class }"
 
   _getDimensions: ($tooltip) ->
     width: $tooltip.width()

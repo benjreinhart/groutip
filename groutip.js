@@ -33,15 +33,25 @@
 
     Groutip.prototype.template = "    <div>      <p>This is placeholder text, add your own!</p>    </div>  ";
 
+    Groutip.prototype.defaultCSS = function() {
+      return {
+        position: 'absolute',
+        zIndex: 10000
+      };
+    };
+
     Groutip.prototype.defaults = function() {
       return {
-        klass: 'groutip'
+        position: 'topCenter',
+        offsetTop: 0,
+        offsetLeft: 0
       };
     };
 
     function Groutip(opts) {
       var _this = this;
       this.$el = opts.el;
+      opts.css = $.extend(this.defaultCSS(), opts.css);
       this.options = $.extend(this.defaults(), opts);
       this.$tooltip = this._constructTooltip(this.options, this.template);
       this.windowResizeHandler = function() {
@@ -59,10 +69,12 @@
       }).appendTo('body');
       this.dimensions = this._getDimensions(this.$tooltip);
       this.position();
-      this.$tooltip.css({
+      if (typeof (_base = this.options).onRender === "function") {
+        _base.onRender();
+      }
+      return this.$tooltip.css({
         opacity: 1
       });
-      return typeof (_base = this.options).onRender === "function" ? _base.onRender() : void 0;
     };
 
     Groutip.prototype.remove = function() {
@@ -79,11 +91,11 @@
     };
 
     Groutip.prototype.position = function() {
-      var oL, oT, offset, opts, position, _ref, _ref1, _ref2;
-      position = (_ref = this.options.position) != null ? _ref : 'topCenter';
+      var oL, oT, offset, opts, position;
+      position = this.options.position;
       opts = POSITION_MAPPING[position];
-      oT = +((_ref1 = this.options.offsetTop) != null ? _ref1 : 0);
-      oL = +((_ref2 = this.options.offsetLeft) != null ? _ref2 : 0);
+      oT = +this.options.offsetTop;
+      oL = +this.options.offsetLeft;
       switch (position) {
         case 'topCenter':
           offset = "" + oL + " -" + (oT + this.dimensions.outerHeight);
@@ -114,14 +126,7 @@
 
     Groutip.prototype._constructTooltip = function(options, template) {
       var _ref, _ref1;
-      return $((_ref1 = options.template) != null ? _ref1 : template).attr('class', this._getClasses(options)).css((_ref = options.css) != null ? _ref : {});
-    };
-
-    Groutip.prototype._getClasses = function(options) {
-      if (options["class"] == null) {
-        return options.klass;
-      }
-      return "" + options.klass + " " + options["class"];
+      return $((_ref1 = options.template) != null ? _ref1 : template).attr('class', options["class"]).css((_ref = options.css) != null ? _ref : {});
     };
 
     Groutip.prototype._getDimensions = function($tooltip) {
