@@ -65,7 +65,9 @@ $('#fave-btn').groutip({
 ```
 
 ```javascript
-// setup your own remove handler - it will be yielded the groutip instance
+// Setup your own remove handler - it will be yielded the groutip instance.
+// The only method of interest on the groutip instance is `remove`, which unbinds
+// events and then either removes it from the DOM or calls the `remove` option if provided
 $('#fave-btn').groutip({
   class: 'tip',
   position: 'bottomCenter',
@@ -82,7 +84,9 @@ $('#fave-btn').groutip({
 ```javascript
 // if you pass a `remove` option, the Groutip class will not remove
 // the tooltip object, but instead call the `remove` option you
-// provided and yield the jQuery tooltip object
+// provided and yield the jQuery tooltip object at which point it's
+// your responsibility to remove it from the DOM
+
 $('#fave-btn').groutip({
   class: 'tip',
   position: 'bottomLeft',
@@ -97,6 +101,7 @@ $('#fave-btn').groutip({
 ```
 
 ```javascript
+// pass in CSS attributes
 $('#fave-btn').groutip({
   class: 'tip',
   position: 'leftCenter',
