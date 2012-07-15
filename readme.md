@@ -30,6 +30,9 @@ weird interactions when window resizing when the alignment is anything but `topC
   * will be passed the tooltip jQuery object
 
 
+If you do not supply a `removeHandler`, then after 1000ms if you click anywhere in the document the tooltip will be removed.
+
+
 ## Examples
 
 These are taken from the demo
