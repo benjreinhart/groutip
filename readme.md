@@ -6,7 +6,14 @@ Requires jQuery UI (specifically [position](http://jqueryui.com/demos/position/)
 
 
 ### known issues:
-weird interactions when window resizing when the alignment is anything but `topCenter` or `bottomCenter` - otherwise works great.
+Weird interactions when window resizing when the alignment is anything but `topCenter` or `bottomCenter` - otherwise works great.
+
+
+### TODO
+
+* Fix css edge cases when window is resized.
+* Don't rely on jQuery UI
+* Add tests
 
 
 ## options
