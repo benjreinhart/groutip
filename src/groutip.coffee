@@ -136,11 +136,13 @@ class Groutip
 
   wait = (delay, callback) => setTimeout(callback, delay)
 
-jQuery.fn.groutip = (options) ->
-  this.each (i, elem) ->
-    options.el = $(elem)
-    new Groutip(options)
+
 
 $.groutip =
   extendDefaults: (options) ->
     Groutip.extendDefaults(options)
+
+jQuery.fn.groutip = (options) ->
+  this.each (i, elem) ->
+    options.el = $(elem)
+    new Groutip(options)

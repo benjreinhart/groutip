@@ -161,17 +161,17 @@
 
   }).call(this);
 
+  $.groutip = {
+    extendDefaults: function(options) {
+      return Groutip.extendDefaults(options);
+    }
+  };
+
   jQuery.fn.groutip = function(options) {
     return this.each(function(i, elem) {
       options.el = $(elem);
       return new Groutip(options);
     });
-  };
-
-  $.groutip = {
-    extendDefaults: function(options) {
-      return Groutip.extendDefaults(options);
-    }
   };
 
 }).call(this);
