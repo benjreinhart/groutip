@@ -110,7 +110,8 @@
       }
       $.extend(opts, {
         of: this.$el,
-        offset: offset
+        offset: offset,
+        collision: 'none'
       });
       this.$tooltip.position(opts);
       this.$tooltip.css({

@@ -91,6 +91,7 @@ class Groutip
     $.extend opts, 
       of: @$el
       offset: offset
+      collision: 'none'
 
     @$tooltip.position(opts)
 
