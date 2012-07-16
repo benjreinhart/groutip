@@ -22,8 +22,8 @@ Requires jQuery UI (specifically [position](http://jqueryui.com/demos/position/)
 ## options
 
 
-* `offsetTop` - vertical pixels from `element` (integer)
-* `offsetLeft` - horizontal pixels from `element` (integer)
+* `offsetTop` - vertical pixels from `element`
+* `offsetLeft` - horizontal pixels from `element`
 * `classes` - classes you want to assign to the tooltip (redundant considering you pass in the html)
 * `html` - the markup and content that'll make up the tooltip
 * `position` - the position you want the tooltip to be aligned

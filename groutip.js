@@ -93,9 +93,11 @@
     };
 
     Groutip.prototype.position = function() {
-      var offset, opts, position;
+      var oL, oT, offset, opts, position;
       position = this.options.position;
       opts = POSITION_MAPPING[position];
+      oT = +this.options.offsetTop;
+      oL = +this.options.offsetLeft;
       switch (position) {
         case 'topCenter':
           offset = "" + oL + " -" + (oT + this.dimensions.outerHeight);
