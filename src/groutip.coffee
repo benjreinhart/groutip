@@ -17,11 +17,11 @@ class Groutip
       my: 'right center'
       at: 'left center'
 
-  template: "
+  html: '
     <div>
       <p>This is placeholder text, add your own!</p>
     </div>
-  "
+  '
 
   defaultCSS: ->
     position: 'absolute'
@@ -37,7 +37,7 @@ class Groutip
     opts.css = $.extend(this.defaultCSS(), opts.css)
     @options = $.extend(this.defaults(), opts)
 
-    @$tooltip = this._constructTooltip(@options, @template)
+    @$tooltip = this._constructTooltip(@options, @html)
 
     # save a reference to this handler so we can unbind it
     # from window on remove
@@ -102,8 +102,8 @@ class Groutip
       height: @dimensions.height
 
 
-  _constructTooltip: (options, template) ->
-    $(options.template ? template)
+  _constructTooltip: (options, html) ->
+    $(options.html ? html)
       .addClass(options.classes)
       .css(options.css ? {})
 

@@ -31,7 +31,11 @@
       }
     };
 
-    Groutip.prototype.template = "    <div>      <p>This is placeholder text, add your own!</p>    </div>  ";
+    Groutip.prototype.html = '\
+    <div>\
+      <p>This is placeholder text, add your own!</p>\
+    </div>\
+  ';
 
     Groutip.prototype.defaultCSS = function() {
       return {
@@ -53,7 +57,7 @@
       this.$el = opts.el;
       opts.css = $.extend(this.defaultCSS(), opts.css);
       this.options = $.extend(this.defaults(), opts);
-      this.$tooltip = this._constructTooltip(this.options, this.template);
+      this.$tooltip = this._constructTooltip(this.options, this.html);
       this.windowResizeHandler = function() {
         return _this.position();
       };
@@ -120,9 +124,9 @@
       });
     };
 
-    Groutip.prototype._constructTooltip = function(options, template) {
+    Groutip.prototype._constructTooltip = function(options, html) {
       var _ref, _ref1;
-      return $((_ref1 = options.template) != null ? _ref1 : template).addClass(options.classes).css((_ref = options.css) != null ? _ref : {});
+      return $((_ref1 = options.html) != null ? _ref1 : html).addClass(options.classes).css((_ref = options.css) != null ? _ref : {});
     };
 
     Groutip.prototype._getDimensions = function($tooltip) {

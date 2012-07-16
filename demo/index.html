@@ -69,7 +69,7 @@
           classes: 'tip',
           position: 'topCenter',
           offsetTop: 10,
-          template: '<div><p>This is placeholder text, please add your own!</p></div>'
+          html: '<div><p>This is placeholder text, please add your own!</p></div>'
         });
       });
 
@@ -78,7 +78,7 @@
           classes: 'tip jip',
           position: 'bottomCenter',
           offsetTop: 10,
-          template: '<div class="zomzomg"><span>This is placeholder text, please add your own!</span></div>',
+          html: '<div class="zomzomg"><span>This is placeholder text, please add your own!</span></div>',
           removeHandler: function(groutip) {
             $('#fave-btn').click(function(){
               groutip.remove()
@@ -92,7 +92,7 @@
           classes: 'tip',
           position: 'bottomLeft',
           offsetTop: 10,
-          template: '<div><span>This is placeholder text, please add your own!</span></div>',
+          html: '<div><span>This is placeholder text, please add your own!</span></div>',
           remove: function($tooltip) {
             $tooltip.fadeOut('slow', function(){
               $tooltip.remove()
@@ -107,7 +107,7 @@
           classes: 'tip',
           position: 'leftCenter',
           offsetLeft: 10,
-          template: '<div><span>This is placeholder text, please add your own!</span></div>',
+          html: '<div><span>This is placeholder text, please add your own!</span></div>',
           css: {
             backgroundColor: 'red'
           }
@@ -119,7 +119,7 @@
           classes: 'tip',
           position: 'rightCenter',
           offsetLeft: 10,
-          template: '<div><span>This is placeholder text, please add your own!</span></div>',
+          html: '<div><span>This is placeholder text, please add your own!</span></div>',
           render: function($tooltip) {
             $tooltip.fadeTo('slow', 1)
           }

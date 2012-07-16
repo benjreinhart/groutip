@@ -25,7 +25,7 @@ Requires jQuery UI (specifically [position](http://jqueryui.com/demos/position/)
 * `offsetTop` - vertical pixels from `element`
 * `offsetLeft` - horizontal pixels from `element`
 * `classes` - classes you want to assign to the tooltip (redundant considering you pass in the html)
-* `template` - the markup and content that'll make up the tooltip
+* `html` - the markup and content that'll make up the tooltip
 * `position` - the position you want the tooltip to be aligned
   * `topCenter`
   * `bottomCenter`
@@ -54,7 +54,7 @@ $('#fave-btn').groutip({
   classes: 'tip',
   position: 'topCenter',
   offsetTop: 10,
-  template: '<div><p>This is placeholder text, please add your own!</p></div>'
+  html: '<div><p>This is placeholder text, please add your own!</p></div>'
 });
 ```
 
@@ -68,7 +68,7 @@ $('#fave-btn').groutip({
   classes: 'tip',
   position: 'bottomCenter',
   offsetTop: 10,
-  template: '<div><span>This is placeholder text, please add your own!</span></div>',
+  html: '<div><span>This is placeholder text, please add your own!</span></div>',
   removeHandler: function(groutip) {
     $('#fave-btn').click(function(){
       groutip.remove()
@@ -87,7 +87,7 @@ $('#fave-btn').groutip({
   classes: 'tip',
   position: 'bottomLeft',
   offsetTop: 10,
-  template: '<div><span>This is placeholder text, please add your own!</span></div>',
+  html: '<div><span>This is placeholder text, please add your own!</span></div>',
   remove: function($tooltip) {
     $tooltip.fadeOut('slow', function(){
       $tooltip.remove()
@@ -102,7 +102,7 @@ $('#fave-btn').groutip({
   classes: 'tip',
   position: 'leftCenter',
   offsetLeft: 10,
-  template: '<div><span>This is placeholder text, please add your own!</span></div>',
+  html: '<div><span>This is placeholder text, please add your own!</span></div>',
   css: {
     backgroundColor: 'red'
   }
@@ -120,7 +120,7 @@ $('#fave-btn').groutip({
   classes: 'tip',
   position: 'rightCenter',
   offsetLeft: 10,
-  template: '<div><span>This is placeholder text, please add your own!</span></div>',
+  html: '<div><span>This is placeholder text, please add your own!</span></div>',
   render: function($tooltip) {
     $tooltip.fadeTo('slow', 1)
   }
