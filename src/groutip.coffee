@@ -1,5 +1,9 @@
 class Groutip
 
+  @extendDefaults: (options) ->
+    options.css = $.extend({}, @::defaults.css, options.css)
+    $.extend(@::defaults, options)
+
   POSITION_MAPPING =
     topCenter:
       my: 'center top'
@@ -130,3 +134,7 @@ jQuery.fn.groutip = (options) ->
   this.each (i, elem) ->
     options.el = $(elem)
     new Groutip(options)
+
+$.groutip =
+  extendDefaults: (options) ->
+    Groutip.extendDefaults(options)

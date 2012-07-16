@@ -8,6 +8,11 @@
 
     Groutip.name = 'Groutip';
 
+    Groutip.extendDefaults = function(options) {
+      options.css = $.extend({}, this.prototype.defaults.css, options.css);
+      return $.extend(this.prototype.defaults, options);
+    };
+
     POSITION_MAPPING = {
       topCenter: {
         my: 'center top',
@@ -160,6 +165,12 @@
       options.el = $(elem);
       return new Groutip(options);
     });
+  };
+
+  $.groutip = {
+    extendDefaults: function(options) {
+      return Groutip.extendDefaults(options);
+    }
   };
 
 }).call(this);
