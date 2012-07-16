@@ -4,14 +4,8 @@ jQuery tooltip aimed at being as flexible and simple as possible.
 
 Requires jQuery UI (specifically [position](http://jqueryui.com/demos/position/)) as of right now, :(
 
-
-### known issues:
-Weird interactions when window resizing when the alignment is anything but `topCenter` or `bottomCenter` - otherwise works great.
-
-
 ### TODO
 
-* Fix css edge cases when window is resized.
 * Don't rely on jQuery UI
 * Test in different browsers for cross browser compatibility
 * Add tests
