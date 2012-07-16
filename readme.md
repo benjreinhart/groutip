@@ -44,6 +44,18 @@ Requires jQuery UI (specifically [position](http://jqueryui.com/demos/position/)
 If you do not supply a `removeHandler`, then after 1000ms if you click anywhere in the document the tooltip will be removed.
 
 
+## Defaults
+
+If you want to provide a set of global defaults, you can make a call to `$.groutip.extendDefaults` and pass an options hash that takes any/all the options outlined above.
+
+```javascript
+$.groutip.extendDefaults({
+  position: 'bottomLeft'
+});
+```
+
+The above will make all the tooltips positioned `bottomLeft`.
+
 ## Examples
 
 These are taken from the demo
