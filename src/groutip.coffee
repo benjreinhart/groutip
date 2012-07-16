@@ -23,19 +23,21 @@ class Groutip
     </div>
   '
 
-  defaultCSS: ->
-    position: 'absolute'
-    zIndex: 10000
-
-  defaults: ->
+  defaults:
     position: 'topCenter'
     offsetTop: 0
     offsetLeft: 0
+    css:
+      position: 'absolute'
+      zIndex: 10000
 
   constructor: (opts) ->
     @$el = opts.el
-    opts.css = $.extend(this.defaultCSS(), opts.css)
-    @options = $.extend(this.defaults(), opts)
+
+    # first arg is an empty object so the prototype's
+    # defaults don't get permantly changed
+    opts.css = $.extend({}, @defaults.css, opts.css)
+    @options = $.extend({}, @defaults, opts)
 
     @$tooltip = this._constructTooltip(@options, @html)
 

@@ -37,26 +37,21 @@
     </div>\
   ';
 
-    Groutip.prototype.defaultCSS = function() {
-      return {
+    Groutip.prototype.defaults = {
+      position: 'topCenter',
+      offsetTop: 0,
+      offsetLeft: 0,
+      css: {
         position: 'absolute',
         zIndex: 10000
-      };
-    };
-
-    Groutip.prototype.defaults = function() {
-      return {
-        position: 'topCenter',
-        offsetTop: 0,
-        offsetLeft: 0
-      };
+      }
     };
 
     function Groutip(opts) {
       var _this = this;
       this.$el = opts.el;
-      opts.css = $.extend(this.defaultCSS(), opts.css);
-      this.options = $.extend(this.defaults(), opts);
+      opts.css = $.extend({}, this.defaults.css, opts.css);
+      this.options = $.extend({}, this.defaults, opts);
       this.$tooltip = this._constructTooltip(this.options, this.html);
       this.windowResizeHandler = function() {
         return _this.position();
