@@ -24,7 +24,7 @@ Requires jQuery UI (specifically [position](http://jqueryui.com/demos/position/)
 
 * `offsetTop` - vertical pixels from `element`
 * `offsetLeft` - horizontal pixels from `element`
-* `class` - classes you want to assign to the tooltip (redundant considering you pass in the template)
+* `classes` - classes you want to assign to the tooltip (redundant considering you pass in the html)
 * `template` - the markup and content that'll make up the tooltip
 * `position` - the position you want the tooltip to be aligned
   * `topCenter`
@@ -51,7 +51,7 @@ These are taken from the demo
 ```javascript
 // Basic
 $('#fave-btn').groutip({
-  class: 'tip',
+  classes: 'tip',
   position: 'topCenter',
   offsetTop: 10,
   template: '<div><p>This is placeholder text, please add your own!</p></div>'
@@ -65,7 +65,7 @@ $('#fave-btn').groutip({
 // on the tooltip object.
 
 $('#fave-btn').groutip({
-  class: 'tip',
+  classes: 'tip',
   position: 'bottomCenter',
   offsetTop: 10,
   template: '<div><span>This is placeholder text, please add your own!</span></div>',
@@ -84,7 +84,7 @@ $('#fave-btn').groutip({
 // your responsibility to remove it from the DOM
 
 $('#fave-btn').groutip({
-  class: 'tip',
+  classes: 'tip',
   position: 'bottomLeft',
   offsetTop: 10,
   template: '<div><span>This is placeholder text, please add your own!</span></div>',
@@ -99,7 +99,7 @@ $('#fave-btn').groutip({
 ```javascript
 // pass in CSS attributes
 $('#fave-btn').groutip({
-  class: 'tip',
+  classes: 'tip',
   position: 'leftCenter',
   offsetLeft: 10,
   template: '<div><span>This is placeholder text, please add your own!</span></div>',
@@ -117,7 +117,7 @@ $('#fave-btn').groutip({
 // you can easily use custom animations/effects to display the tooltip.
 
 $('#fave-btn').groutip({
-  class: 'tip',
+  classes: 'tip',
   position: 'rightCenter',
   offsetLeft: 10,
   template: '<div><span>This is placeholder text, please add your own!</span></div>',

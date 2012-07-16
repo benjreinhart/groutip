@@ -104,7 +104,7 @@ class Groutip
 
   _constructTooltip: (options, template) ->
     $(options.template ? template)
-      .addClass(options.class)
+      .addClass(options.classes)
       .css(options.css ? {})
 
   _getDimensions: ($tooltip) ->

@@ -66,7 +66,7 @@
     $(function(){
       $('#top-center').click(function(){
         $('#fave-btn').groutip({
-          class: 'tip',
+          classes: 'tip',
           position: 'topCenter',
           offsetTop: 10,
           template: '<div><p>This is placeholder text, please add your own!</p></div>'
@@ -75,10 +75,10 @@
 
       $('#bottom-center').click(function(){
         $('#fave-btn').groutip({
-          class: 'tip',
+          classes: 'tip jip',
           position: 'bottomCenter',
           offsetTop: 10,
-          template: '<div><span>This is placeholder text, please add your own!</span></div>',
+          template: '<div class="zomzomg"><span>This is placeholder text, please add your own!</span></div>',
           removeHandler: function(groutip) {
             $('#fave-btn').click(function(){
               groutip.remove()
@@ -89,7 +89,7 @@
 
       $('#bottom-left').click(function(){
         $('#fave-btn').groutip({
-          class: 'tip',
+          classes: 'tip',
           position: 'bottomLeft',
           offsetTop: 10,
           template: '<div><span>This is placeholder text, please add your own!</span></div>',
@@ -104,7 +104,7 @@
 
       $('#left-center').click(function(){
         $('#fave-btn').groutip({
-          class: 'tip',
+          classes: 'tip',
           position: 'leftCenter',
           offsetLeft: 10,
           template: '<div><span>This is placeholder text, please add your own!</span></div>',
@@ -116,7 +116,7 @@
 
       $('#right-center').click(function(){
         $('#fave-btn').groutip({
-          class: 'tip',
+          classes: 'tip',
           position: 'rightCenter',
           offsetLeft: 10,
           template: '<div><span>This is placeholder text, please add your own!</span></div>',
