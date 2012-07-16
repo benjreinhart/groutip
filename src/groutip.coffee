@@ -127,5 +127,6 @@ class Groutip
   wait = (delay, callback) => setTimeout(callback, delay)
 
 jQuery.fn.groutip = (options) ->
-  options.el = this
-  new Groutip(options)
+  this.each (i, elem) ->
+    options.el = $(elem)
+    new Groutip(options)

@@ -160,8 +160,10 @@
   }).call(this);
 
   jQuery.fn.groutip = function(options) {
-    options.el = this;
-    return new Groutip(options);
+    return this.each(function(i, elem) {
+      options.el = $(elem);
+      return new Groutip(options);
+    });
   };
 
 }).call(this);
