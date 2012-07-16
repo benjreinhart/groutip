@@ -110,7 +110,7 @@ class Groutip
 
   _constructTooltip: (options, html) ->
     $(options.html ? html)
-      .addClass(options.classes)
+      .addClass(options.classes.concat(' groutip'))
       .css(options.css ? {})
 
   _getDimensions: ($tooltip) ->
