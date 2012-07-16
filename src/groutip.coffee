@@ -95,13 +95,11 @@ class Groutip
 
     @$tooltip.position(opts)
 
+    # set the tooltip's width and height so it
+    # doesn't resize on window resize
     @$tooltip.css
       width: @dimensions.width
       height: @dimensions.height
-
-    # set the child to absolute so it doesn't change shape
-    # on window resize
-    $(@$tooltip.children()[0]).css position: 'absolute'
 
 
   _constructTooltip: (options, template) ->

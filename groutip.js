@@ -114,12 +114,9 @@
         collision: 'none'
       });
       this.$tooltip.position(opts);
-      this.$tooltip.css({
+      return this.$tooltip.css({
         width: this.dimensions.width,
         height: this.dimensions.height
-      });
-      return $(this.$tooltip.children()[0]).css({
-        position: 'absolute'
       });
     };
 
