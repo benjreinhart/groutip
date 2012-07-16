@@ -94,7 +94,7 @@ class Groutip
       else
         offset = "#{ oL } #{ oT }"
 
-    $.extend opts, 
+    $.extend opts,
       of: @$el
       offset: offset
       collision: 'none'
