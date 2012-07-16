@@ -109,8 +109,14 @@ class Groutip
 
 
   _constructTooltip: (options, html) ->
+    classes =
+      if typeof options.classes is 'string'
+        "#{ options.classes } groutip"
+      else
+        'groutip'
+
     $(options.html ? html)
-      .addClass(options.classes.concat(' groutip'))
+      .addClass(classes)
       .css(options.css ? {})
 
   _getDimensions: ($tooltip) ->
