@@ -80,13 +80,9 @@ class Groutip
     position = @options.position
     opts = POSITION_MAPPING[position]
 
-    # convert possible string representations to ints
-    oT = +@options.offsetTop
-    oL = +@options.offsetLeft
-
     switch position
       when 'topCenter'
-        offset = "#{ oL } -#{ oT + @dimensions.outerHeight}"
+        offset = "#{ oL } -#{ oT + @dimensions.outerHeight }"
       when 'bottomCenter', 'bottomLeft'
         offset = "#{ oL } #{ oT + @dimensions.outerHeight }"
       when 'leftCenter'
