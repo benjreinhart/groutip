@@ -40,8 +40,8 @@ class Groutip
   constructor: (opts) ->
     @$el = opts.el
 
-    # first arg is an empty object so the prototype's
-    # defaults don't get permantly changed
+    # extend into an empty object so our original
+    # defaults don't get permantly overwritten
     opts.css = $.extend({}, @defaults.css, opts.css)
     @options = $.extend({}, @defaults, opts)
 
