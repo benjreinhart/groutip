@@ -1,6 +1,8 @@
 class Groutip
 
   @extendDefaults: (options) ->
+    # $.extend only shallow copies, so we have to
+    # manually extend our nested options object
     options.css = $.extend({}, @::defaults.css, options.css)
     $.extend(@::defaults, options)
 
