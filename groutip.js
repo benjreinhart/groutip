@@ -10,7 +10,7 @@
 
     _tooltips = [];
 
-    _cidCount = 0;
+    _cidCount = 1;
 
     Groutip.extendDefaults = function(options) {
       options.css = $.extend({}, this.prototype.defaults.css, options.css);

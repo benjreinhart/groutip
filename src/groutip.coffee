@@ -1,7 +1,7 @@
 class Groutip
 
   _tooltips = []
-  _cidCount = 0
+  _cidCount = 1
 
   @extendDefaults: (options) ->
     # $.extend only shallow copies, so we have to
