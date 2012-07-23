@@ -3,14 +3,38 @@
   var Groutip;
 
   Groutip = (function() {
-    var POSITION_MAPPING, wait,
+    var POSITION_MAPPING, wait, _cidCount, _tooltips,
       _this = this;
 
     Groutip.name = 'Groutip';
 
+    _tooltips = [];
+
+    _cidCount = 0;
+
     Groutip.extendDefaults = function(options) {
       options.css = $.extend({}, this.prototype.defaults.css, options.css);
       return $.extend(this.prototype.defaults, options);
+    };
+
+    Groutip.remove = function(cid) {
+      var i, position, tooltip, _i, _j, _len, _len1;
+      if (cid != null) {
+        for (i = _i = 0, _len = _tooltips.length; _i < _len; i = ++_i) {
+          tooltip = _tooltips[i];
+          if (tooltip.cid === cid) {
+            position = i;
+          }
+        }
+        _tooltips[position].remove();
+        return _tooltips.splice(position, 1);
+      } else {
+        for (_j = 0, _len1 = _tooltips.length; _j < _len1; _j++) {
+          tooltip = _tooltips[_j];
+          tooltip.remove();
+        }
+        return _tooltips = [];
+      }
     };
 
     POSITION_MAPPING = {
@@ -58,6 +82,7 @@
       opts.css = $.extend({}, this.defaults.css, opts.css);
       this.options = $.extend({}, this.defaults, opts);
       this.$tooltip = this._constructTooltip(this.options, this.html);
+      this._addCid(this.$tooltip);
       this.windowResizeHandler = function() {
         return _this.position();
       };
@@ -74,12 +99,13 @@
       this.dimensions = this._getDimensions(this.$tooltip);
       this.position();
       if ((render = this.options.render) != null) {
-        return render(this.$tooltip);
+        render(this.$tooltip);
       } else {
-        return this.$tooltip.css({
+        this.$tooltip.css({
           opacity: 1
         });
       }
+      return _tooltips.push(this);
     };
 
     Groutip.prototype.remove = function() {
@@ -139,6 +165,12 @@
       };
     };
 
+    Groutip.prototype._addCid = function($tooltip) {
+      this.cid = _cidCount;
+      $tooltip.data('cid', _cidCount);
+      return _cidCount += 1;
+    };
+
     Groutip.prototype._setupRemoveHandler = function(options) {
       var removeHandler,
         _this = this;
@@ -164,6 +196,9 @@
   $.groutip = {
     extendDefaults: function(options) {
       return Groutip.extendDefaults(options);
+    },
+    remove: function(cid) {
+      return Groutip.remove(cid);
     }
   };
 

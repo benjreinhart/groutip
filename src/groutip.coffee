@@ -1,10 +1,30 @@
 class Groutip
 
+  _tooltips = []
+  _cidCount = 0
+
   @extendDefaults: (options) ->
     # $.extend only shallow copies, so we have to
     # manually extend our nested options object
     options.css = $.extend({}, @::defaults.css, options.css)
     $.extend(@::defaults, options)
+
+  # class method for removing individual or all tooltips
+  # used *only* in testing environments
+  @remove: (cid) ->
+    if cid?
+      for tooltip, i in _tooltips
+        position = i if tooltip.cid is cid
+
+      # call its remove method and then remove
+      # it from the internal collection
+      _tooltips[position].remove()
+      _tooltips.splice(position, 1)
+
+    else
+      tooltip.remove() for tooltip in _tooltips
+      _tooltips = []
+
 
   POSITION_MAPPING =
     topCenter:
@@ -46,6 +66,7 @@ class Groutip
     @options = $.extend({}, @defaults, opts)
 
     @$tooltip = this._constructTooltip(@options, @html)
+    this._addCid(@$tooltip)
 
     # save a reference to this handler so we can unbind it
     # from window on remove
@@ -69,6 +90,9 @@ class Groutip
       render(@$tooltip)
     else
       @$tooltip.css opacity: 1
+
+    # add instance to the internal collection
+    _tooltips.push(this)
 
   remove: ->
     $(window).unbind('resize', @windowResizeHandler)
@@ -127,6 +151,11 @@ class Groutip
     outerWidth: $tooltip.outerWidth()
     outerHeight: $tooltip.outerHeight()
 
+  _addCid: ($tooltip) ->
+    @cid = _cidCount
+    $tooltip.data('cid', _cidCount)
+    _cidCount += 1
+
   _setupRemoveHandler: (options) ->
     if (removeHandler = options.removeHandler)?
       removeHandler(this)
@@ -143,6 +172,11 @@ class Groutip
 $.groutip =
   extendDefaults: (options) ->
     Groutip.extendDefaults(options)
+
+  # for testing purposes only
+  remove: (cid) ->
+    Groutip.remove(cid)
+
 
 jQuery.fn.groutip = (options) ->
   this.each (i, elem) ->
