@@ -82,7 +82,6 @@
       opts.css = $.extend({}, this.defaults.css, opts.css);
       this.options = $.extend({}, this.defaults, opts);
       this.$tooltip = this._constructTooltip(this.options, this.html);
-      this._addCid(this.$tooltip);
       this.windowResizeHandler = function() {
         return _this.position();
       };
@@ -153,7 +152,8 @@
     Groutip.prototype._constructTooltip = function(options, html) {
       var classes, _ref, _ref1;
       classes = typeof options.classes === 'string' ? "" + options.classes + " groutip" : 'groutip';
-      return $((_ref1 = options.html) != null ? _ref1 : html).addClass(classes).css((_ref = options.css) != null ? _ref : {});
+      this.cid = _cidCount++;
+      return $((_ref1 = options.html) != null ? _ref1 : html).addClass(classes).css((_ref = options.css) != null ? _ref : {}).data('cid', this.cid);
     };
 
     Groutip.prototype._getDimensions = function($tooltip) {
@@ -163,12 +163,6 @@
         outerWidth: $tooltip.outerWidth(),
         outerHeight: $tooltip.outerHeight()
       };
-    };
-
-    Groutip.prototype._addCid = function($tooltip) {
-      this.cid = _cidCount;
-      $tooltip.data('cid', _cidCount);
-      return _cidCount += 1;
     };
 
     Groutip.prototype._setupRemoveHandler = function(options) {

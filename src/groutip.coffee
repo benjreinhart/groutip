@@ -67,7 +67,6 @@ class Groutip
     @options = $.extend({}, @defaults, opts)
 
     @$tooltip = this._constructTooltip(@options, @html)
-    this._addCid(@$tooltip)
 
     # save a reference to this handler so we can unbind it
     # from window on remove
@@ -142,20 +141,18 @@ class Groutip
       else
         'groutip'
 
+    @cid = _cidCount++
+
     $(options.html ? html)
       .addClass(classes)
       .css(options.css ? {})
+      .data('cid', @cid)
 
   _getDimensions: ($tooltip) ->
     width: $tooltip.width()
     height: $tooltip.height()
     outerWidth: $tooltip.outerWidth()
     outerHeight: $tooltip.outerHeight()
-
-  _addCid: ($tooltip) ->
-    @cid = _cidCount
-    $tooltip.data('cid', _cidCount)
-    _cidCount += 1
 
   _setupRemoveHandler: (options) ->
     if (removeHandler = options.removeHandler)?
@@ -167,7 +164,6 @@ class Groutip
 
 
   wait = (delay, callback) => setTimeout(callback, delay)
-
 
 
 $.groutip =
