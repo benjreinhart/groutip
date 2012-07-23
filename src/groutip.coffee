@@ -1,7 +1,6 @@
 class Groutip
 
   _tooltips = []
-  _cidCount = 1
 
   @extendDefaults: (options) ->
     # $.extend only shallow copies, so we have to
@@ -9,22 +8,11 @@ class Groutip
     options.css = $.extend({}, @::defaults.css, options.css)
     $.extend(@::defaults, options)
 
-  # class method for removing individual or all tooltips
+  # class method for removing all tooltips
   # used *only* in testing environments
   @remove: (cid) ->
-    if cid?
-      for tooltip, i in _tooltips
-        position = i if tooltip.cid is cid
-
-      # call its remove method and then remove
-      # it from the internal collection
-      _tooltips[position].remove()
-      _tooltips.splice(position, 1)
-
-    else
-      # if no args are passed, remove all
-      tooltip.remove() for tooltip in _tooltips
-      _tooltips = []
+    tooltip.remove() for tooltip in _tooltips
+    _tooltips = []
 
 
   POSITION_MAPPING =
@@ -141,12 +129,9 @@ class Groutip
       else
         'groutip'
 
-    @cid = _cidCount++
-
     $(options.html ? html)
       .addClass(classes)
       .css(options.css ? {})
-      .data('cid', @cid)
 
   _getDimensions: ($tooltip) ->
     width: $tooltip.width()

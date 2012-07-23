@@ -3,14 +3,12 @@
   var Groutip;
 
   Groutip = (function() {
-    var POSITION_MAPPING, wait, _cidCount, _tooltips,
+    var POSITION_MAPPING, wait, _tooltips,
       _this = this;
 
     Groutip.name = 'Groutip';
 
     _tooltips = [];
-
-    _cidCount = 1;
 
     Groutip.extendDefaults = function(options) {
       options.css = $.extend({}, this.prototype.defaults.css, options.css);
@@ -18,23 +16,12 @@
     };
 
     Groutip.remove = function(cid) {
-      var i, position, tooltip, _i, _j, _len, _len1;
-      if (cid != null) {
-        for (i = _i = 0, _len = _tooltips.length; _i < _len; i = ++_i) {
-          tooltip = _tooltips[i];
-          if (tooltip.cid === cid) {
-            position = i;
-          }
-        }
-        _tooltips[position].remove();
-        return _tooltips.splice(position, 1);
-      } else {
-        for (_j = 0, _len1 = _tooltips.length; _j < _len1; _j++) {
-          tooltip = _tooltips[_j];
-          tooltip.remove();
-        }
-        return _tooltips = [];
+      var tooltip, _i, _len;
+      for (_i = 0, _len = _tooltips.length; _i < _len; _i++) {
+        tooltip = _tooltips[_i];
+        tooltip.remove();
       }
+      return _tooltips = [];
     };
 
     POSITION_MAPPING = {
@@ -152,8 +139,7 @@
     Groutip.prototype._constructTooltip = function(options, html) {
       var classes, _ref, _ref1;
       classes = typeof options.classes === 'string' ? "" + options.classes + " groutip" : 'groutip';
-      this.cid = _cidCount++;
-      return $((_ref1 = options.html) != null ? _ref1 : html).addClass(classes).css((_ref = options.css) != null ? _ref : {}).data('cid', this.cid);
+      return $((_ref1 = options.html) != null ? _ref1 : html).addClass(classes).css((_ref = options.css) != null ? _ref : {});
     };
 
     Groutip.prototype._getDimensions = function($tooltip) {
