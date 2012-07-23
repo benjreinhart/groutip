@@ -156,8 +156,8 @@ $.groutip =
     Groutip.extendDefaults(options)
 
   # for testing purposes only
-  remove: (cid) ->
-    Groutip.remove(cid)
+  remove: ->
+    Groutip.remove()
 
 
 jQuery.fn.groutip = (options) ->

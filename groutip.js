@@ -177,8 +177,8 @@
     extendDefaults: function(options) {
       return Groutip.extendDefaults(options);
     },
-    remove: function(cid) {
-      return Groutip.remove(cid);
+    remove: function() {
+      return Groutip.remove();
     }
   };
 
