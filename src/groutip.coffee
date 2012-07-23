@@ -22,6 +22,7 @@ class Groutip
       _tooltips.splice(position, 1)
 
     else
+      # if no args are passed, remove all
       tooltip.remove() for tooltip in _tooltips
       _tooltips = []
 
