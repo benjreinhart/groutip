@@ -79,7 +79,7 @@ class Groutip
   render: ->
     # place invisible tooltip on page so we can read the
     # tooltip's width and height dimensions
-    @$tooltip.css({ opacity: 0 }).appendTo('body')
+    @$tooltip.css({ opacity: 0 }).insertAfter(@$el)
 
     # store width and height dimensions
     @dimensions = this._getDimensions(@$tooltip)

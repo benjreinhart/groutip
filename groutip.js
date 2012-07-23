@@ -95,7 +95,7 @@
       var render;
       this.$tooltip.css({
         opacity: 0
-      }).appendTo('body');
+      }).insertAfter(this.$el);
       this.dimensions = this._getDimensions(this.$tooltip);
       this.position();
       if ((render = this.options.render) != null) {
